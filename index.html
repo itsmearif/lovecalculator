@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator - Made By Arif</title>
+    <link rel="stylesheet" href="/input.css">
+</head>
+<body>
+    
+    <div class="w-screen flex flex-col items-center h-screen justify-center">
+        <p  class="w-screen mt-2 p-2 text-4xl font-medium rounded-md text-center">Calculate Your Love :)</p>
+        <img class="w-[200px] my-4" src="/img.png" alt="">
+        <input id="name1" type="text" class="w-[350px] p-2 border-2 text-xl font-medium border-black rounded-md mb-4 text-center" placeholder="Enter your Name">
+        <input id="name2" type="text" class="w-[350px] p-2 border-2 text-xl font-medium border-black rounded-md text-center" placeholder="Enter your Lover's Name">
+        <p id="result" class="w-[350px] mt-2 p-2 text-2xl font-medium rounded-md text-center"></p>
+        <button id="btn" onclick="calculate()" class="bg-green-400 p-3 text-xl my-[4px] font-medium rounded-lg  hover:bg-green-500 ">Calculate Love</button>
+    </div>
+    <script>
+        function calculate(){
+        const name1 = document.getElementById('name1').value;
+        const name2 = document.getElementById('name2').value;
+        const button = document.getElementById('btn');
+        const result = document.getElementById('result')
+
+       
+       
+        if(name1 && name2){
+            let res = Math.floor(Math.random() * 100)
+             let str = (name1 + name2).replace(/\s/g, "")
+             str = str.toLowerCase()
+             if(localStorage.getItem(str)){
+                res = localStorage.getItem(str)
+             }else{
+                localStorage.setItem(str,res)
+             }
+             result.innerHTML = `Love Percentage: ${res}%`
+             setTimeout(() => {
+                result.innerHTML = ""
+             }, 5000);
+        }else{
+            alert("Please enter valid name")
+        }
+    }
+    </script>
+</body>
+</html>
